@@ -25,10 +25,10 @@ This project is developed using Truffle, an Ethereum development environment. En
 
 Clone the repository and install the dependencies.
 
-```
-git clone [repository_url]
-cd [repository_name]/truffle
-npm install
+```sh
+$ git clone [repository_url]
+$ cd [repository_name]/truffle
+$ npm install
 ```
 
 ## Smart Contract - Legacy.sol
@@ -48,17 +48,17 @@ Located in the `contracts` directory, `Legacy.sol` is the core of the applicatio
 
 Compile and migrate the smart contract using Truffle.
 
-```
-truffle compile
-truffle migrate
+```sh
+$ truffle compile
+$ truffle migrate
 ```
 
 ## Testing
 
 Tests are located in the test directory. Run tests using Truffle.
 
-```
-truffle test
+```sh
+$ truffle test
 
 ```
 
