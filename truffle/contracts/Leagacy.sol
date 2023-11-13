@@ -247,5 +247,16 @@ contract Leagacy {
     return false;
   }
 
+  // Function to check if an address is a commissioner of a specific league
+  function isCommissioner(string memory leagueName, address user) public view returns (bool) {
+    League storage league = leagues[leagueName];
+    for (uint i = 0; i < league.commissioners.length; i++) {
+      if (league.commissioners[i] == user) {
+        return true;
+      }
+    }
+    return false;
+  }
+
 }
 
