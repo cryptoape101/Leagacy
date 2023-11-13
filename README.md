@@ -38,7 +38,7 @@ $ npm start
 
 From there, follow the instructions on the hosted React app. It will walk you through using Truffle and Ganache to deploy the `Leagacy` contract, making calls to it, and sending transactions to change the contract's state.
 
-## Interacting with Legacy
+## Interacting with Leagacy
 
 After deploying the `Leagacy` contract using Truffle and Ganache, you can interact with it through the React app. The interface allows you to create leagues, deposit fees, and manage payouts.
 

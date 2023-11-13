@@ -1,8 +1,8 @@
-# Legacy Smart Contract - Fantasy Football Fee Manager DApp
+# Leagacy Smart Contract - Fantasy Football Fee Manager DApp
 
 ## Overview
 
-The Legacy smart contract is designed for managing a Fantasy Football League. It facilitates the setting and accepting of fees from league members, locks up the fees, and distributes the payouts at the end of the season.
+The Leagacy smart contract is designed for managing a Fantasy Football League. It facilitates the setting and accepting of fees from league members, locks up the fees, and distributes the payouts at the end of the season.
 
 ### Key Features
 
@@ -31,9 +31,17 @@ $ cd [repository_name]/truffle
 $ npm install
 ```
 
-## Smart Contract - Legacy.sol
+## Smart Contract
 
-Located in the `contracts` directory, `Legacy.sol` is the core of the application.
+All smart contracts are located in the `contracts` directory.
+
+### Leagacy.sol
+
+`Leagacy.sol` is the core of the application.
+
+### LeagacyFactory.sol
+
+Located in the `contracts` directory, `LeagacyFactory.sol` generates multiple instances of `Leagacy.sol`.
 
 ### Key Structures and Functions
 
@@ -70,7 +78,7 @@ $ truffle test
 
 ## Contributing
 
-Contributions to the Legacy contract are welcome. Please ensure that your code adheres to the project's coding standards and include tests for new features.
+Contributions to the Leagacy contract are welcome. Please ensure that your code adheres to the project's coding standards and include tests for new features.
 
 ## License
 
