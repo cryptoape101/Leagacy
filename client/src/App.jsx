@@ -1,24 +1,27 @@
-import { EthProvider } from "./contexts/EthContext";
-// import Intro from "./components/Intro/";
-// import Setup from "./components/Setup";
-// import Demo from "./components/Demo";
-import TopNavigation from "./components/TopNavigation";
+// import { EthProvider } from "./contexts/EthContext";
 // import Footer from "./components/Footer";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import TopNavigation from "./components/TopNavigation";
 import MainContent from "./components/MainContent";
+import CreateLeague from "./components/CreateLeague"; // import your new page component
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
 function App() {
-  // Placeholder wallet address, replace with actual logic
-  const walletAddress = null; // Example: "0x123...456"
-
   return (
-    <EthProvider>
-      <div id="App">
-        <div className="container">
-          <TopNavigation walletAddress={walletAddress} />
-          <MainContent walletAddress={walletAddress} />
+    <Provider store={store}>
+      <Router>
+        <div id="App">
+          <div className="container">
+            <TopNavigation />
+            <Routes>
+              <Route path="/create-league" element={<CreateLeague />} />
+              <Route path="/" element={<MainContent />} />
+            </Routes>
+          </div>
         </div>
-      </div>
-    </EthProvider>
+      </Router>
+    </Provider>
   );
 }
 

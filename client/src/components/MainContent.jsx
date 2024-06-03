@@ -1,9 +1,15 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+
 import { Typography, Button, Box } from '@mui/material';
 
-const MainContent = ({ walletAddress }) => {
+import ConnectWalletButton from './ConnectWalletButton';
+
+const MainContent = () => {
+  const walletAddress = useSelector((state) => state.app.walletAddress);
+
   return (
-    <Box sx={{ padding: 3 }}>
+    <Box sx={{ padding: 2 }}>
       {!walletAddress ? (
         // Displayed when the wallet is not connected
         <Box>
@@ -13,9 +19,7 @@ const MainContent = ({ walletAddress }) => {
           <Typography variant="body1" sx={{ mb: 2 }}>
             Your one-stop solution for managing Fantasy Football Leagues. Connect your wallet to create a new league or manage your existing leagues.
           </Typography>
-          <Button variant="contained" color="primary">
-            Connect Wallet
-          </Button>
+          <ConnectWalletButton variant="contained" color="primary" />
         </Box>
       ) : (
         // Displayed when the wallet is connected
