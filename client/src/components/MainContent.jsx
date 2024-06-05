@@ -1,16 +1,17 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useAccount } from 'wagmi'
 
 import { Typography, Button, Box } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 import ConnectWalletButton from './ConnectWalletButton';
 
 const MainContent = () => {
-  const walletAddress = useSelector((state) => state.app.walletAddress);
+  const {address} = useAccount();
 
   return (
     <Box sx={{ padding: 2 }}>
-      {!walletAddress ? (
+      {!address ? (
         // Displayed when the wallet is not connected
         <Box>
           <Typography variant="h4" gutterBottom>
@@ -30,10 +31,10 @@ const MainContent = () => {
           <Typography variant="body1" sx={{ mb: 2 }}>
             Manage your Leagues or start a new adventure by creating a new league.
           </Typography>
-          <Button variant="contained" color="primary" sx={{ mr: 2 }}>
-            Create a League
+          <Button variant="contained" color="primary" sx={{ mr: 2 }} component={Link} to="/create">
+            Create New League
           </Button>
-          <Button variant="contained" color="secondary">
+          <Button variant="contained" color="secondary" component={Link} to="/leagues">
             Manage Your Leagues
           </Button>
         </Box>

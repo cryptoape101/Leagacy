@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useAccount } from 'wagmi'
 
 import { AppBar, Toolbar, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 import MenuComponent from './MenuComponent';
-import WalletMenu from './WalletMenuComponent';
 import CreateLeagueButton from './CreateLeagueButton';
 import ConnectWalletButton from './ConnectWalletButton';
 
 const TopNavigation = () => {
-  const walletAddress = useSelector((state) => state.app.walletAddress);
+  const {address} = useAccount();
+  console.log('address:', address);
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClose = () => {
@@ -26,14 +26,11 @@ const TopNavigation = () => {
             Leagacy
           </Link>
         </Typography>
-        {walletAddress ? (
-          <>
-            <CreateLeagueButton />
-            <WalletMenu />
-          </>
-        ) : (
-          <ConnectWalletButton color="inherit" />
+        {address && (
+          <CreateLeagueButton />
         )}
+        <ConnectWalletButton accountStatus="address" chainStatus="none" label="Connect" showBalance={false} />
+        
       </Toolbar>
     </AppBar>
   );
