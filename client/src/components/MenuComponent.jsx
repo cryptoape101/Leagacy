@@ -8,25 +8,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
 
 import CreateLeagueButton from './CreateLeagueButton';
-
-/**
- * Generates a display formatted string for the year
- * If the year is a single digit, it returns the year as a string
- * If the year is a two digit array, it returns the years as a range
- * 
- * @param {*} year
- * @returns String
- */
-const formatYear = (year) => {
-  if (year.length === 1) {
-    return year[0].toString();
-  } else if (year.length === 2) {
-    let sortedYear = [...year]; // Create a copy of the year array
-    sortedYear.sort((a, b) => a - b); // Sort the copy
-    return `${sortedYear[0]}-${sortedYear[1]}`;
-  }
-  return '';
-}
+import { formatYear } from '@leagacy/utils/displayFormat';
 
 const MenuComponent = ({ anchorEl, setAnchorEl, handleClose }) => {
   const leagues = useSelector((state) => state.app.leagues);
@@ -72,7 +54,7 @@ const MenuComponent = ({ anchorEl, setAnchorEl, handleClose }) => {
                 <Box display="flex" justifyContent="space-between" width="100%">
                   <ListItemText
                     primary={league.name}
-                    secondary={`${league.sport} ${formatYear(league.year)}`}
+                    secondary={`${league.sport} ${formatYear({year: league.year, shortFormat: true})}`}
                   />
                   {league.commish && (
                     <ListItemIcon>

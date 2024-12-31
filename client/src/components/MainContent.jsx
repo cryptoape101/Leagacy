@@ -25,7 +25,7 @@ const MainContent = () => {
       ) : (
         // Displayed when the wallet is connected
         <Box>
-          <Typography variant="h4" gutterBottom>
+          <Typography variant="h2" gutterBottom>
             Welcome Back!
           </Typography>
           <Typography variant="body1" sx={{ mb: 2 }}>

@@ -9,8 +9,9 @@ import { base } from "wagmi/chains";
 import store from '@leagacy/redux/store';
 import App from './App';
 
-import "./styles.css";
-import "./rainbow-me.css";
+import "@leagacy/styles/styles.css";
+import "@leagacy/styles/rainbow-me.css";
+import '@leagacy/styles/fonts.css';
 
 const config = getDefaultConfig({
   appName: 'Leagacy',
@@ -19,6 +20,8 @@ const config = getDefaultConfig({
 });
 
 const queryClient = new QueryClient();
+
+console.log('base: ', base);
 
 const root = document.getElementById('root');
 if (root !== null) {

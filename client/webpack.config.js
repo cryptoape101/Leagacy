@@ -19,9 +19,7 @@ module.exports = {
   resolve: {
     extensions,
     alias: {
-      '@leagacy/icons': path.resolve(__dirname, 'src/assets/icons/'),
-      '@leagacy/redux': path.resolve(__dirname, 'src/redux/'),
-      '@leagacy/mock': path.resolve(__dirname, 'src/mock/'),
+      '@leagacy': path.resolve(__dirname, 'src/'),
     }
   },
   devServer: {

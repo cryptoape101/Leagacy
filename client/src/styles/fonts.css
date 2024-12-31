@@ -1,0 +1,9 @@
+@font-face {
+  font-family: 'Jakobenz';
+  src: url('@leagacy/assets/fonts/jakobenz-font/jakobenz-51lq8.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Prosto Sans';
+  src: url('@leagacy/assets/fonts/prosto-sans/Prosto Sans Bold.otf') format('opentype');
+}

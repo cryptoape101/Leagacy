@@ -18,10 +18,10 @@ const TopNavigation = () => {
   };
 
   return (
-    <AppBar position="static" sx={{ marginBottom: 4 }}>
+    <AppBar position="static" >
       <Toolbar>
         <MenuComponent anchorEl={anchorEl} setAnchorEl={setAnchorEl} handleClose={handleClose} />
-        <Typography variant="h6" sx={{ flexGrow: 1 }}>
+        <Typography variant="h1" sx={{ flexGrow: 1 }}>
           <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
             Leagacy
           </Link>
