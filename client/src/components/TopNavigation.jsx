@@ -18,8 +18,15 @@ const TopNavigation = () => {
   };
 
   return (
-    <AppBar position="static" >
-      <Toolbar>
+    <AppBar position="static">
+      <Toolbar
+        sx={{
+          margin: '10px',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}
+      >
         <MenuComponent anchorEl={anchorEl} setAnchorEl={setAnchorEl} handleClose={handleClose} />
         <Typography variant="h1" sx={{ flexGrow: 1 }}>
           <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>

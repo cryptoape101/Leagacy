@@ -11,6 +11,8 @@ import TopNavigation from "./components/TopNavigation";
 import MainContent from "./components/MainContent";
 import CreateLeague from "./components/CreateLeague";
 import ManageLeagues from "./components/ManageLeagues";
+import LeagueDetails from "./components/LeagueDetails";
+
 
 import { fetchData } from '@leagacy/mock/data';
 import { setLeagues } from '@leagacy/redux/appSlice';
@@ -31,7 +33,7 @@ function App() {
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
-    if (params.get('mockData')) {
+    if (params.get('mockData')) { // TODO: Remove when live blockchain data is being used
       fetchData().then(data => {
         const {leagues} = data;
         console.log("Fetched mock data", leagues);
@@ -50,6 +52,7 @@ function App() {
           <Routes>
             <Route path="/create" element={<CreateLeague />} />
             <Route path="/leagues" element={<ManageLeagues />} />
+            <Route path="/league/:id" element={<LeagueDetails />} />
             <Route path="/" element={<MainContent />} />
           </Routes>
         </div>

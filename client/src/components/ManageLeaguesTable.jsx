@@ -1,10 +1,13 @@
 import React from 'react';
-import { Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography } from '@mui/material';
+
+import FantasyButton from './FantasyButton';
 
 import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
 
 import { formatCurrency, formatYear } from '@leagacy/utils/displayFormat';
+
+import { useNavigateWithParams } from '@leagacy/hooks/useNavigateWithParams';
 
 function LeaguesTable({ leagues, leagueAriaLabel }) {
 
@@ -21,7 +24,7 @@ function LeaguesTable({ leagues, leagueAriaLabel }) {
         </TableHead>
         <TableBody>
           {leagues.map((league) => (
-            <LeagueRow league={league} />
+            <LeagueRow key={league.id} league={league} />
           ))}
         </TableBody>
       </Table>
@@ -30,16 +33,34 @@ function LeaguesTable({ leagues, leagueAriaLabel }) {
 }
 
 function LeagueRow({ league }) {
+  const navigate = useNavigateWithParams();
   const name = league.name || 'N/A';
   const sport = league.sport || 'N/A';
   const year = formatYear({year: league.year}) || 'N/A';
   const fee = formatCurrency(league.fee, league.currency) || 'N/A';
 
+  const handleNavigation = () => {
+    navigate(`/league/${league.id}`);
+  };
+
   return (
     <TableRow key={league.name}>
       <TableCell sx={{ position: 'sticky', left: 0, backgroundColor: 'white' }}>
         <Typography variant="span" aria-label={`${name}${league.commish ? ' commissioner' : ''}`}>
-          <Link to={`/leagues/${league.id}`}>{name}</Link> {league.commish ? <SupervisorAccountIcon /> : null}
+        <Typography 
+            component="span" 
+            onClick={handleNavigation} 
+            sx={{ 
+              cursor: 'pointer',
+              color: 'primary.main',
+              textDecoration: 'underline',
+              '&:hover': {
+                textDecoration: 'none',
+              }
+            }}
+          >
+            {name} {league.commish ? <SupervisorAccountIcon /> : null}
+          </Typography>
         </Typography>
       </TableCell>
       <TableCell>
@@ -50,7 +71,7 @@ function LeagueRow({ league }) {
       </TableCell>
       <TableCell>{league.paid ?
         (<Typography variant="span">Paid</Typography>) :
-        (<Button variant="contained" color="primary">Pay</Button>)
+        (<FantasyButton onClick={handleNavigation} size="small">Pay</FantasyButton>)
       }</TableCell>
     </TableRow>
   );

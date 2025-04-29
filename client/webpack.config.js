@@ -14,7 +14,9 @@ module.exports = {
   mode: process.env.NODE_ENV === "production" ? "production" : "development",
   entry: "./src/index.jsx",
   output: {
+    publicPath: '/',
     path: path.resolve(__dirname, "build"),
+    filename: "main.js",
   },
   resolve: {
     extensions,
@@ -26,7 +28,11 @@ module.exports = {
     client: {
       overlay: false,
     },
-    historyApiFallback: true,
+    historyApiFallback: true, // Simplified configuration
+    static: {
+      directory: path.join(__dirname, 'public'),
+      publicPath: '/'
+    }
   },
   module: {
     rules: [

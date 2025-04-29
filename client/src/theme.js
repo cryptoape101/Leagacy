@@ -1,42 +1,43 @@
 import { createTheme } from '@mui/material/styles';
 
-// Define the color values
-const colors = {
-  primary: {
-    light: '#5C9ECC', // Lighter shade of Dynamic Blue
-    main: '#0077CC', // Dynamic Blue
-    dark: '#005999', // Darker shade of Dynamic Blue
-  },
-  secondary: {
-    light: '#FFECB3', // Lighter shade of Fantasy Gold
-    main: '#FFD700', // Fantasy Gold
-    dark: '#B29500', // Darker shade of Fantasy Gold
-  },
-  error: {
-    light: '#E57373', // Light Red
-    main: '#F44336', // Red
-    dark: '#D32F2F', // Dark Red
-  },
-};
 
-// TODO: Add dark mode theme
-// const darkColors = {
+// Define the color values
+// const colors = {
 //   primary: {
-//     light: '#3B6A9A', // Darker shade of Dynamic Blue for dark mode
-//     main: '#005999', // Darker shade of Dynamic Blue
-//     dark: '#003C66', // Even darker shade of Dynamic Blue
+//     light: '#5C9ECC', // Lighter shade of Dynamic Blue
+//     main: '#0077CC', // Dynamic Blue
+//     dark: '#005999', // Darker shade of Dynamic Blue
 //   },
 //   secondary: {
-//     light: '#CCAC00', // Darker shade of Fantasy Gold for dark mode
-//     main: '#B29500', // Darker shade of Fantasy Gold
-//     dark: '#806A00', // Even darker shade of Fantasy Gold
-//   },
-//   error: {
-//     light: '#B23C2C', // Darker shade of Red for dark mode
-//     main: '#D32F2F', // Dark Red
-//     dark: '#9A2020', // Even darker shade of Red
+//     light: '#FFECB3', // Lighter shade of Fantasy Gold
+//     main: '#FFD700', // Fantasy Gold
+//     dark: '#B29500', // Darker shade of Fantasy Gold
 //   },
 // };
+
+// Fantasy Grimoire Theme
+const colors = {
+  primary: {
+    light: '#A08CF7',    // Lavender glow
+    main: '#6741D9',     // Royal purple
+    dark: '#4C2CA2',     // Deeper magic
+  },
+  secondary: {
+    light: '#FFF4B3',    // Light gold
+    main: '#FFD700',     // Fantasy Gold
+    dark: '#B29500',     // Ancient gold
+  },
+  error: {
+    light: '#E57373',
+    main: '#F44336',
+    dark: '#D32F2F',
+  },
+  parchment: {
+    light: '#fdf1dc',
+    main: '#f5e4c3',
+    dark: '#e6d1a3',
+  }
+};
 
 const fonts = {
   jakobenz: '"Jakobenz", "Roboto", "Helvetica", "Arial", sans-serif',
@@ -46,30 +47,33 @@ const fonts = {
 
 const typography = {
   fontFamily: fonts.default,
-  fontSize: 14, // Add your desired base font size here
+  fontSize: 14,
   h1: {
     fontFamily: fonts.jakobenz,
     fontSize: '2rem',
+    letterSpacing: '0.05em',
+    fontWeight: 'bold',
   },
   h2: {
-    fontFamily: fonts.prostoSans,
-    fontSize: '1.5rem',
+    fontFamily: fonts.jakobenz,
+    fontSize: '1.75rem',
+    letterSpacing: '0.04em',
   },
   h3: {
     fontFamily: fonts.prostoSans,
-    fontSize: '1.17rem',
+    fontSize: '1.5rem',
   },
   h4: {
     fontFamily: fonts.prostoSans,
-    fontSize: '1rem',
+    fontSize: '1.25rem',
   },
   h5: {
     fontFamily: fonts.prostoSans,
-    fontSize: '0.83rem',
+    fontSize: '1rem',
   },
   h6: {
     fontFamily: fonts.prostoSans,
-    fontSize: '0.67rem',
+    fontSize: '0.875rem',
   },
   body1: {
     fontSize: '1rem',
@@ -80,79 +84,85 @@ const typography = {
   button: {
     fontFamily: fonts.prostoSans,
     textTransform: 'none',
+    fontWeight: 600,
   },
 };
 
 let theme = createTheme({
   palette: {
-    type: 'light',
-    primary: {
-      light: colors.primary.light,
-      main: colors.primary.main,
-      dark: colors.primary.dark,
-    },
-    secondary: {
-      light: colors.secondary.light,
-      main: colors.secondary.main,
-      dark: colors.secondary.dark,
-    },
-    error: {
-      light: colors.error.light,
-      main: colors.error.main,
-      dark: colors.error.dark,
+    mode: 'light',
+    primary: colors.primary,
+    secondary: colors.secondary,
+    error: colors.error,
+    background: {
+      default: colors.parchment.main,
+      paper: colors.parchment.main,
     },
   },
-  background: {
-    default: '#FFFFFF', // Clean White
-    paper: '#F7F7F7', // Off White
+  typography,
+  shape: {
+    borderRadius: 6,
   },
-  typography
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          backgroundColor: colors.primary.main,
+          color: colors.secondary.main,
+          boxShadow: `0 0 8px ${colors.secondary.main}`,
+          '&:hover': {
+            backgroundColor: colors.primary.dark,
+          },
+        },
+      },
+    },
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          backgroundColor: colors.secondary.light,
+          backgroundImage: `
+            radial-gradient(circle, rgba(0,0,0,0.03) 1px, transparent 1px),
+            radial-gradient(circle, rgba(0,0,0,0.015) 1px, transparent 1px),
+            linear-gradient(to bottom, #fdf1dc 0%, #f5e4c3 100%)
+          `,
+
+        },
+      },
+    },
+    MuiToolbar: {
+      styleOverrides: {
+        root: {
+          backgroundColor: colors.primary.main,
+        },
+      },
+    },
+  },
 });
 
-// Update the theme with the contrast text
+
+
+// Add contrast text color for all palettes
 theme = createTheme({
   ...theme,
   palette: {
     ...theme.palette,
     primary: {
       ...theme.palette.primary,
-      contrastText: theme.palette.getContrastText(theme.palette.primary.main),
+      contrastText: '#fff',
     },
     secondary: {
       ...theme.palette.secondary,
-      contrastText: theme.palette.getContrastText(theme.palette.secondary.main),
+      contrastText: '#000',
     },
     error: {
       ...theme.palette.error,
-      contrastText: theme.palette.getContrastText(theme.palette.error.main),
+      contrastText: '#fff',
+    },
+    parchment: {
+      ...theme.palette.parchment,
+      contrastText: '#000',
     },
   },
 });
-
-// let darkTheme = createTheme({
-//   palette: {
-//     type: 'dark',
-//     primary: {
-//       light: colors.primary.light,
-//       main: colors.primary.main,
-//       dark: colors.primary.dark,
-//     },
-//     secondary: {
-//       light: colors.secondary.light,
-//       main: colors.secondary.main,
-//       dark: colors.secondary.dark,
-//     },
-//     error: {
-//       light: colors.error.light,
-//       main: colors.error.main,
-//       dark: colors.error.dark,
-//     },
-//   },
-//   background: {
-//     default: '#121212', // Dark Grey
-//     paper: '#1E1E1E', // Darker Grey
-//   },
-//   typography
-// });
 
 export default theme;

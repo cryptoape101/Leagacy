@@ -13,6 +13,7 @@ import "@leagacy/styles/styles.css";
 import "@leagacy/styles/rainbow-me.css";
 import '@leagacy/styles/fonts.css';
 
+
 const config = getDefaultConfig({
   appName: 'Leagacy',
   projectId: '896eb944d76e82e3f16b77c4b0732da7',
@@ -31,7 +32,13 @@ if (root !== null) {
         <QueryClientProvider client={queryClient}>
           <RainbowKitProvider coolMode modalSize="compact" >
             <Provider store={store}>
-              <Router>
+              <Router
+                basename="/"
+                future={{ 
+                  v7_startTransition: true,
+                  v7_relativeSplatPath: true
+                }}
+              >
                 <App />
               </Router>
             </Provider>

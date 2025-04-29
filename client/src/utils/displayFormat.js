@@ -1,4 +1,8 @@
 import React from 'react';
+import { Eth as EthIcon } from '@leagacy/assets/icons/eth';
+import { Tether as TetherIcon } from '@leagacy/assets/icons/tether';
+import { Usdc as UsdcIcon } from '@leagacy/assets/icons/usdc';
+
 /**
  * @file displayFormat.js
  * This helper file is used to format display data.
@@ -47,14 +51,30 @@ export const formatYearShortLong = (year, shortFormat = false) => {
   }
 };
 
+export const getCurrencyIcon = (iconName) => {
+  switch (iconName) {
+    case 'ETH':
+      return <EthIcon />;
+    case 'USDC':
+      return <UsdcIcon />;
+    case 'USDT':
+      return <TetherIcon />;
+    default:
+      return null;
+  }
+};
+
 export const formatCurrency = (fee, currency) => {
   if (!fee || !currency) {
     console.warn('Fee or currency is not set');
     return '';
   }
 
-  if (currency.icon && React.isValidElement(currency.icon)) {
-    return <>{fee} {currency.icon}</>;
+  if (currency.iconName) {
+    const icon = getCurrencyIcon(currency.iconName);
+    if (icon) {
+      return <>{fee} {icon}</>;
+    }
   }
 
   return `${fee} $${currency.symbol}`;

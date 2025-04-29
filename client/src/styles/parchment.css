@@ -1,0 +1,16 @@
+/* Parchment background style */
+
+.parchment-background {
+  background-color: #fdf1dc; /* base parchment color */
+  background-image: 
+    radial-gradient(circle, rgba(0,0,0,0.03) 1px, transparent 1px),
+    radial-gradient(circle, rgba(0,0,0,0.015) 1px, transparent 1px),
+    linear-gradient(to bottom, #fdf1dc 0%, #f5e4c3 100%);
+  background-size: 3px 3px, 5px 5px, 100% 100%;
+  background-position: 0 0, 1px 1px, 0 0;
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.1); /* aged edge effect */
+  border: 1px solid #e6d1a3;
+  padding: 2rem;
+  border-radius: 6px;
+}
+  

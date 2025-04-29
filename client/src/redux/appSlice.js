@@ -1,30 +1,20 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { adaptBlockchainLeagues/*, adaptFrontendToBlockchain */} from '@leagacy/utils/adapters';
+
+// Create an async thunk for fetching blockchain data
+export const fetchBlockchainData = createAsyncThunk(
+  'app/fetchBlockchainData',
+  async () => {
+    // Replace with actual blockchain data fetching
+    const response = await fetch('/api/blockchain-data');
+    return await response.json();
+  }
+);
 
 const initialState = {
   leagues: [],
-  // leagues: [ // mock data
-  //   {
-  //     id: 1,
-  //     name: 'League 1',
-  //     sport: 'NFL',
-  //     year: 2024,
-  //     commish: true,
-  //   },
-  //   {
-  //     id: 2,
-  //     name: 'League 2',
-  //     sport: 'NBA',
-  //     year: 2023,
-  //     commish: false,
-  //   },
-  //   {
-  //     id: 3,
-  //     name: 'League 3',
-  //     sport: 'MLB',
-  //     year: 2022,
-  //     commish: true,
-  //   }
-  // ],
+  loading: false,
+  error: null
 };
 
 const appSlice = createSlice({
@@ -35,6 +25,21 @@ const appSlice = createSlice({
       state.leagues = action.payload;
     },
   },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchBlockchainData.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(fetchBlockchainData.fulfilled, (state, action) => {
+        state.loading = false;
+        // Use adapter to convert blockchain data to frontend format
+        state.leagues = adaptBlockchainLeagues(action.payload);
+      })
+      .addCase(fetchBlockchainData.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
+  }
 });
 
 export const { setLeagues } = appSlice.actions;
