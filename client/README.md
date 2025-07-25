@@ -1,6 +1,15 @@
-# React client
+# Leagacy Client
 
-This react project is unopinionated with only `web3.js` as an added dependency, so nothing stands in your way.
+A React-based fantasy league management DApp with Material-UI components, Web3 integration, and custom parchment-style theming.
+
+## Features
+
+- **Material-UI Components**: Clean, accessible interface using MUI defaults
+- **Custom Fonts**: Jakobenz and Prosto Sans typography for fantasy aesthetic
+- **Parchment Background**: Subtle aged paper texture
+- **Web3 Integration**: RainbowKit + Wagmi for wallet connectivity
+- **Redux State Management**: Centralized application state
+- **React Router**: Client-side navigation
 
 ## Getting started
 

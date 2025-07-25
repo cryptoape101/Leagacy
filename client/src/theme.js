@@ -1,21 +1,5 @@
 import { createTheme } from '@mui/material/styles';
 
-
-// Define the color values
-// const colors = {
-//   primary: {
-//     light: '#5C9ECC', // Lighter shade of Dynamic Blue
-//     main: '#0077CC', // Dynamic Blue
-//     dark: '#005999', // Darker shade of Dynamic Blue
-//   },
-//   secondary: {
-//     light: '#FFECB3', // Lighter shade of Fantasy Gold
-//     main: '#FFD700', // Fantasy Gold
-//     dark: '#B29500', // Darker shade of Fantasy Gold
-//   },
-// };
-
-// Fantasy Grimoire Theme
 const colors = {
   primary: {
     light: '#A08CF7',    // Lavender glow
@@ -100,32 +84,12 @@ let theme = createTheme({
     },
   },
   typography,
-  shape: {
-    borderRadius: 6,
-  },
   components: {
     MuiButton: {
       styleOverrides: {
         root: {
           backgroundColor: colors.primary.main,
-          color: colors.secondary.main,
-          boxShadow: `0 0 8px ${colors.secondary.main}`,
-          '&:hover': {
-            backgroundColor: colors.primary.dark,
-          },
-        },
-      },
-    },
-    MuiPaper: {
-      styleOverrides: {
-        root: {
-          backgroundColor: colors.secondary.light,
-          backgroundImage: `
-            radial-gradient(circle, rgba(0,0,0,0.03) 1px, transparent 1px),
-            radial-gradient(circle, rgba(0,0,0,0.015) 1px, transparent 1px),
-            linear-gradient(to bottom, #fdf1dc 0%, #f5e4c3 100%)
-          `,
-
+          color: colors.secondary.main
         },
       },
     },
